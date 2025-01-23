@@ -10,4 +10,4 @@
 
 4. Base de Datos NoSQL (MongoDB)
 
-![Base de datos](./image/WhatsApp%20Image%202025-01-09%20at%2017.33.54_16cc9e20.jpg)
+![Base de datos](./unidad1/image/WhatsApp%20Image%202025-01-09%20at%2017.33.54_16cc9e20.jpg)
