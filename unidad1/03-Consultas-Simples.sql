@@ -42,8 +42,17 @@ select *,(UnitPrice* Quantity - Discount) as Importe from [Order Details];
 select OrderDate as 'Fecha de orden', year(OrderDate) as 'Año de orden', month (OrderDate) as 'Mes de orden', day (OrderDate) as 'Dia de orden',CustomerID, EmployeeID from Orders;
 select * from Orders;
 
+-- Filas Duplicadas 
+select * from Customers;
+
+-- Mostrar los paises donde se tienen clientes, mostrando el pais solamente
+
+select distinct country from Customers
+order by country;
+
+
 -- Clausula where 
--- Operadores relacionales (<,>,=,<=,>=)
+-- Operadores relacionales o test de comparacion (<,>,=,<=,>=)
 select * from Customers;
 
 -- Seleccionar el Cliente BOLID
@@ -91,5 +100,37 @@ where YEAR (OrderDate) != 1996
 ;
 
 
+-- Mostrar todas las ordenes de compra donde la cantidad de productos comprados sea mayor a 5
 
+select Quantity from [Order Details]
+where Quantity >= 40;
 
+--Mostrar el nombre completo del empleado, su numero de empleado, fecha de naciemiento y fecha de contratacion y esta debe de 
+-- ser de aquellos que fueron contratados despues de 1993 los resultados en su encabezados deben ser mostrados en español
+
+select * from Employees;
+
+select EmployeeID as 'ID empleado',
+(FirstName + '  '+ LastName) as 'Nombre completo', BirthDate as 'Fecha de nacimiento',
+City as 'Ciudad',HireDate as 'Fecha de contratacion' 
+from Employees
+where year (HireDate) > 1993
+;
+
+select EmployeeID as 'ID empleado',
+Concat(FirstName,'  ',LastName, ' - ', Title) as 'Nombre Completo', BirthDate as 'Fecha de nacimiento',
+City as 'Ciudad',HireDate as 'Fecha de contratacion' 
+from Employees
+where year (HireDate) > 1993
+;
+
+--Mostrar los empleados que no son dirigidos por el Jefe 2
+SELECT EmployeeID as 'ID empleado',
+(FirstName + '  '+ LastName) as 'Nombre completo', BirthDate as 'Fecha de nacimiento',
+City as 'Ciudad',HireDate as 'Fecha de contratacion', ReportsTo as 'Jefe'  FROM Employees
+where ReportsTo != 2;
+
+--Seleccionar los empelados que no tengan jefe
+select * from Employees
+where ReportsTo is null
+;
