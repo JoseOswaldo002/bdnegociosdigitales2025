@@ -258,4 +258,104 @@ where ShipRegion in ('RJ','Táchira') or not ShipRegion is Null
 
 
 
--- Clausula Beetween
+-- Clausula Beetween (Siempre va en el where)
+
+-- beetween valorIncicial and valorFinal
+-- Mostarar los productos con precio entre 10 y 50
+
+select * from Products 
+where UnitPrice >= 10 and UnitPrice <= 50;
+
+ select * from Products 
+where UnitPrice between 10 and 50;
+
+/* Selecciona todos los pedidos realizados,
+entre el primero de enero y el 30 de junio de 1997
+*/
+Select * from Orders;
+
+
+Select * from Orders
+where OrderDate between '1997-01-01' and '1997-06-30'
+;
+
+
+-- Seleccionar todos los empleados contratados entre 1990 y 1995 que trebajan en londres\
+
+select * from Employees
+where YEAR (HireDate) between '1992' and '1994' and City = 'London'
+;
+
+-- Pedidos con flete (freigh) entre 50 y 200 enviados a alemania y francia 
+
+Select OrderID as 'Numero de orden',
+OrderDate as 'Fecha de Orden',
+RequiredDate as ' Fecha de entrega',
+Freight as 'Peso'
+from Orders
+where Freight between 50 and 200 and 
+ShipCountry in ('France', 'Germany')
+;
+
+/*
+Seleccionar todos los productos que tengan un precio
+entre 5 y 20 dolares o que sean de la categoria 1,2,3
+*/
+
+select ProductName, CategoryID, UnitPrice from Products
+where UnitPrice between 5 and 20 or CategoryID in (1,2,3)
+;
+
+
+/*
+Empleados con numero de trabajo entre 3 y 7 que no trabajan en Londres ni Seattle
+*/
+
+Select EmployeeID as 'Numero de empleado',CONCAT (FirstName,' ',LastName) as 'Nombre Completo', City from Employees
+where EmployeeID between 3 and 7 and not City in ('London','Seattle')
+;
+
+
+/*
+	Clausula Like
+	Patrones:
+	-- 1 ) % (Porcentaje) -> Representa 0 o mas caracteres en el patron de busqueda 
+
+	-- 2 ) - (guion bajo) -> Representa exactamente un caracter en el busqueda
+		
+	-- 3) [] (corchetes) -> Se utiliza para definir un conjento de caracteres, 
+							buscando calquiera de ellos en la posicion especifica
+
+	-- 4) [^]            -> Se utiliza para buscar caracteres que no estan dentro del complejo especifico      
+	
+	-- Buscar los productos que comienzan con C
+*/
+	SELECT * FROM Products
+	where ProductName like 'C%'
+	;
+
+	SELECT * FROM Products
+	where ProductName like 'Ch%'
+	;
+
+	SELECT * FROM Products
+	where ProductName like 'Cha%'
+	and UnitPrice = 18
+	;
+
+	--Buscar todos los productos que terminen con E
+
+	SELECT * FROM Products
+	where ProductName like '%e'
+	;
+
+	--Seleccionar todos los clientes cuyo nombre de empresa contiene la palabra "CO" en cualquier parte
+
+	SELECT * FROM Customers
+	where CompanyName like '%co%';
+
+	--Seleccionar los empleados cuyo nombre comienze con 'A' y tenga exactamente 5 caracteres
+
+	SELECT CONCAT(FirstName ,' ',LastName) as 'Nombre completo' FROM Employees
+	where FirstName like 'A_____'
+	;
