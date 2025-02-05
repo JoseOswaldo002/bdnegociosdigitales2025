@@ -359,3 +359,68 @@ where EmployeeID between 3 and 7 and not City in ('London','Seattle')
 	SELECT CONCAT(FirstName ,' ',LastName) as 'Nombre completo' FROM Employees
 	where FirstName like 'A_____'
 	;
+
+	--Seleccionar los productos qur comiencen con A o B
+	select * from
+	Products
+	where ProductName Like '[ABC]%'
+
+
+	select * from
+	Products
+	where ProductName Like '[A-M]%'
+
+	-- Seleccionar todos los productos que no comiencen con A o B
+
+	select * from
+	Products
+	where ProductName Like '[^AB]%'
+
+	--Seleccionar todos los productos donde el nombre comience con A pero no la E
+
+	select * from
+	Products
+	where ProductName Like 'A%' and ProductName Like '[^E]%'
+
+-- Clausula Order By
+
+	select ProductID, ProductName, UnitPrice, UnitsInStock 
+	from Products
+	order by UnitPrice asc
+	--desc
+
+	select ProductID, ProductName, UnitPrice, UnitsInStock 
+	from Products
+	order by 3 asc
+
+
+	select ProductID, ProductName, UnitPrice as 'Precio', UnitsInStock 
+	from Products
+	order by 'Precio' desc
+	
+
+	--Seleccionar los clientes ordenados por el pais y dentro por ciudad
+	select CustomerID, Country, City
+	from Customers
+	Order by Country asc, City asc;
+
+	select CustomerID, Country, City
+	from Customers
+	where Country = 'Brazil'
+	Order by Country asc, City desc;
+
+	select CustomerID, Country, City
+	from Customers
+	where Country in ('Brazil','Germany')
+	Order by Country asc, City desc;
+
+	select CustomerID, Country, City
+	from Customers
+	where (Country = 'Brazil' or Country = 'Germany')
+	Order by Country asc, City desc;
+
+	select CustomerID, Country, City, region
+	from Customers
+	where (Country = 'Brazil' or Country = 'Germany')
+	and region is not null
+	Order by Country, City desc;
