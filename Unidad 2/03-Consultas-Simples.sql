@@ -18,7 +18,7 @@ select * from [Order Details];
 -- Proyeccion 
 -- Seleccionar ciertos campos
 select ProductID, ProductName, UnitPrice, UnitsInStock from Products;
-
+select CompanyName, ContactName from Customers
 --Seleccionar el numero de mepleado, su primer nombre , su cargo, ciudad y pais.
 select * from Employees;
 select EmployeeID, FirstName, Title, City, Country from Employees;
@@ -33,14 +33,28 @@ select EmployeeID, FirstName, Title, City, Country from Employees;
 
 select EmployeeID as 'NumeroEmpleado', FirstName as PirmerNombre, Title 'Cargo', City as [Ciudad], Country as Pais from Employees;
 
+Select ShipperID, CompanyName as 'Nombre de la Compañia', Phone AS 'Telefono' from Shippers
 -- Campo calculado
 -- Seleccionar el importe de cada uno de los productos vendidos en una orden
 
 select *,(UnitPrice* Quantity - Discount) as Importe from [Order Details];
 
+Select *,(UnitPrice * UnitsInStock) AS 'Costo invetario',
+(UnitsOnOrder * UnitPrice) as 'Costo Orden'
+from Products
+
 -- Seleccionar las fechas de orden, año, mes y dia, el cliente que las ordeno y el empleado que la realizo.
-select OrderDate as 'Fecha de orden', year(OrderDate) as 'Año de orden', month (OrderDate) as 'Mes de orden', day (OrderDate) as 'Dia de orden',CustomerID, EmployeeID from Orders;
+select OrderDate as 'Fecha de orden', year(OrderDate) as 'Año de orden',
+month (OrderDate) as 'Mes de orden', day (OrderDate) as 'Dia de orden',
+CustomerID, EmployeeID 
+from Orders;
 select * from Orders;
+
+-- Seleccionar las fechas de envio, año, mes y dia, el cliente que las ordeno y el empleado que la realizo.
+Select ShippedDate  AS 'Fecha de Envio', year(ShippedDate) as 'Año de Envio',
+MONTH (ShippedDate) AS 'Mes de Envio', DAY(ShippedDate) as 'Dia de envio',
+CustomerID, EmployeeID
+from Orders
 
 -- Filas Duplicadas 
 select * from Customers;
@@ -58,7 +72,8 @@ select * from Customers;
 -- Seleccionar el Cliente BOLID
 select CustomerID, CompanyName, City , Country
 from Customers
-WHERE CustomerID = 'BOLID'
+WHERE Country = 'Mexico'
+order by CompanyName desc
 ;
 
 -- Seleccionar los Cliente mostrando su identificador, nombre de la empresa, contacto, ciudad, pais de alemania.
@@ -424,3 +439,27 @@ where EmployeeID between 3 and 7 and not City in ('London','Seattle')
 	where (Country = 'Brazil' or Country = 'Germany')
 	and region is not null
 	Order by Country, City desc;
+
+
+	--Obtener los nombres de los clientes que hayan realizado pedidos en 1997.
+SELECT 
+    Cu.CustomerID, 
+    Cu.CompanyName, 
+    O.OrderDate, 
+    YEAR(O.OrderDate) AS 'Año de pedido' 
+FROM Orders AS O
+JOIN Customers AS Cu 
+ON Cu.CustomerID = O.CustomerID
+WHERE YEAR(O.OrderDate) = 1996;
+
+select *from Orders
+
+
+
+	--Mostrar los productos que tienen menos de 10 unidades en stock y aún no han sido descontinuados.
+
+
+	--Listar los proveedores que suministran productos con un precio mayor a 50.
+
+
+	--Calcular el total de ingresos generados por cada categoría de producto.
