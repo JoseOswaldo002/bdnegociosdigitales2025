@@ -1,3 +1,7 @@
+#INNER JOIN
+![INNER JOIN](../img/img_inner_join.png)
+
+```SQL
 
 --	Seleccionar todas las categorias y productos
 	use Northwind
@@ -556,5 +560,5 @@ group by c.CompanyName
 Having SUM(od.Quantity * od.UnitPrice) between 500 and 2000
 order by 2 desc;
 
-
+```
 -- Left Join, Right Join, Full Join, Cross Join
