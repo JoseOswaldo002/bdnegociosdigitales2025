@@ -64,7 +64,7 @@ where O.OrderDate between '1996-07-01' and '1996-10-30'
 
 -- Mostrar el importe todal de ventas de la consulta anterior
 
-select concat ('$',' ',sum,(od.Quantity * od.UnitPrice )) as 'Importe' from 
+select concat ('$',' ',sum,(OD.Quan*od.UnitPrice)) as 'Importe' from 
 Orders  as O
 join
 [Order Details] as OD
@@ -366,6 +366,7 @@ INNER JOIN
 Products as p
 on s.SupplierID = p.SupplierID
 Group by s.SupplierID, s.CompanyName
+order by s.CompanyName
 ---------------------------------
 select sp.CompanyName as Proveedores, sum(od.Quantity) as 'Productos vendidos'
 from Products as p
@@ -373,7 +374,9 @@ inner join Suppliers as sp
 on p.SupplierID = sp.SupplierID
 inner join [Order Details] as od
 on p.ProductID = od.ProductID
-group by�sp.CompanyName
+group by sp.CompanyName
+order by sp.CompanyName
+
 
 --18. Obtener la cantidad de pedidos enviados por cada empresa de transporte.
 
@@ -558,3 +561,10 @@ order by 2 desc;
 
 
 -- Left Join, Right Join, Full Join, Cross Join
+
+
+-- Practica de utilizacion de LEFT JOIN
+
+--	Seleccionar los datos que se van a utilizar para insertar en la tabla poducts_new
+
+select productid, productName, Customer, Category, unitprice, discontinued, inserted_date from products_new
