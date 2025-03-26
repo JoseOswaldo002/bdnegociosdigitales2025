@@ -2,6 +2,8 @@
 
 ---
 
+## Configuración inicial
+
 ```sql
 -- ==========================
 --       FUNCIONES DE CADENA
@@ -14,7 +16,13 @@ GO
     Las funciones de cadena permiten manipular datos de tipo VARCHAR, 
     NVARCHAR, CHAR y NCHAR. Son útiles para formatear, modificar y analizar cadenas de texto.
 */
+```
 
+---
+
+## Declaración de variables
+
+```sql
 -- ============================================
 -- DECLARACIÓN DE VARIABLES EN SQL SERVER
 -- ============================================
@@ -22,7 +30,13 @@ GO
 -- Declarar una variable de tipo INT y asignarle un valor inicial
 DECLARE @Numero INT = 7;
 PRINT @Numero;  
+```
 
+---
+
+## Función LEN: longitud de cadenas
+
+```sql
 -- ============================================
 -- FUNCIÓN LEN: DEVUELVE LA LONGITUD DE UNA CADENA
 -- ============================================
@@ -33,7 +47,13 @@ SELECT LEN(@Texto) AS 'Longitud';  -- Devuelve 12 porque cuenta caracteres, pero
 
 -- Obtener la longitud del nombre de la empresa en la tabla Customers
 SELECT CompanyName, LEN(CompanyName) AS 'Número de caracteres' FROM Customers;
+```
 
+---
+
+## Funciones para manipulación de subcadenas
+
+```sql
 -----------------------------------------------------------------------------------------
 -- ============================================
 -- FUNCIONES PARA MANIPULACIÓN DE SUBCADENAS
@@ -60,7 +80,13 @@ SELECT UPPER(@Texto) AS 'Texto en Mayúsculas'; -- Devuelve 'HOLA, MUNDO!'
 
 -- TRIM: Elimina los espacios en blanco al inicio y al final de una cadena
 SELECT TRIM('     test    ') AS 'Resultado Trim'; -- Devuelve 'test'
+```
 
+---
+
+## Uso combinado de funciones de cadena
+
+```sql
 -----------------------------------------------------------------------------------------
 -- ============================================
 -- USO COMBINADO DE FUNCIONES DE CADENA
@@ -73,7 +99,13 @@ SELECT CONCAT(
     UPPER(SUBSTRING(@Texto2, 7, 5)), -- 'MUNDO' (posición 7, extrae 5 caracteres y los convierte en mayúsculas)
     RIGHT(@Texto2, 1) -- '!' (último carácter sin cambios)
 ) AS 'Texto Modificado'; -- Resultado: 'Hola, MUNDO!'
+```
 
+---
+
+## Stored Procedure de prueba con Customers
+
+```sql
 -----------------------------------------------------------------------------------------
 -- ============================================
 -- CREACIÓN DE UN STORED PROCEDURE PARA MOSTRAR CLIENTES
@@ -89,7 +121,13 @@ GO
 
 -- Ejecutar el stored procedure
 EXEC spu_mostrar_clientes;
+```
 
+---
+
+## Otro ejemplo combinado con funciones de cadena
+
+```sql
 -----------------------------------------------------------------------------------------
 -- ============================================
 -- USO DE MÚLTIPLES FUNCIONES DE CADENA EN UNA CONSULTA
@@ -101,7 +139,13 @@ SELECT CONCAT(
     UPPER(SUBSTRING(@Texto2, 7, 5)), -- 'MUNDO'
     RIGHT(@Texto2, 1) -- '!'
 ) AS 'TextoNuevo'; -- Resultado: 'Hola, MUNDO!'
+```
 
+---
+
+## Aplicación de funciones de cadena sobre CompanyName
+
+```sql
 -- ============================================
 -- APLICACIÓN DE FUNCIONES DE CADENA A NOMBRES DE EMPRESAS EN LA TABLA CUSTOMERS
 -- ============================================

@@ -1,8 +1,9 @@
-# Procedimientos Almacenados (Stored Procedures) - SQL Server - Northwind
-
+# Procedimientos Almacenados (Stored Procedures)
 
 
 ---
+
+## Configuración inicial
 
 ```sql
 -- ============================================
@@ -10,7 +11,13 @@
 -- ============================================
 
 USE Northwind;
+```
 
+---
+
+## 1. Mostrar todos los clientes
+
+```sql
 -- =====================================================
 -- 1. CREAR UN STORED PROCEDURE PARA SELECCIONAR TODOS LOS CLIENTES
 -- =====================================================
@@ -24,7 +31,13 @@ GO
 
 -- Ejecutar el procedimiento almacenado
 EXEC spu_mostrar_clientes;
+```
 
+---
+
+## 2. Mostrar clientes por país
+
+```sql
 -- =====================================================
 -- 2. CREAR UN STORED PROCEDURE PARA MOSTRAR CLIENTES POR PAÍS
 -- =====================================================
@@ -45,7 +58,13 @@ EXEC spu_customers_por_pais 'Mexico', 'Germany';
 DECLARE @p1 NVARCHAR(15) = 'Mexico';
 DECLARE @p2 NVARCHAR(15) = 'Germany';
 EXEC spu_customersporpais @p1, @p2;
+```
 
+---
+
+## 3. Reporte de ventas por cliente en rango de fechas
+
+```sql
 -- =====================================================
 -- 3. GENERAR UN REPORTE DE COMPRAS POR CLIENTE EN UN RANGO DE FECHAS
 -- =====================================================
@@ -72,7 +91,13 @@ EXEC spu_informe_ventas_clientes 'Berglunds snabbköp', '1996-07-04', '1997-01-0
 EXEC spu_informe_ventas_clientes @fechaFinal = '1997-01-01', @nombre = 'Berglunds snabbköp', @fechaInicial = '1996-07-04';
 EXEC spu_informe_ventas_clientes @fechaInicial ='1996-07-04', @FechaFinal = '1997-01-01';
 GO
+```
 
+---
+
+## 4. Parámetros de salida
+
+```sql
 -- =====================================================
 -- 4. STORE PROCEDURE CON PARÁMETROS DE SALIDA
 -- =====================================================
@@ -90,7 +115,13 @@ GO
 DECLARE @numero INT;
 EXEC spu_obtener_numero_clientes @customerid = 'ALFKI', @totalCustomers = @numero OUTPUT;
 PRINT 'Número de clientes encontrados: ' + CAST(@numero AS NVARCHAR);
+```
 
+---
+
+## 5. Verificar existencia de cliente
+
+```sql
 -- =====================================================
 -- 5. VERIFICAR SI UN CLIENTE EXISTE ANTES DE DEVOLVER SU INFORMACIÓN
 -- =====================================================
@@ -107,7 +138,13 @@ END;
 GO
 
 EXEC spu_obtener_cliente_siexiste @numeroCliente = 'AROUT';
+```
 
+---
+
+## 6. Insertar cliente verificando existencia
+
+```sql
 -- =====================================================
 -- 6. INSERTAR UN CLIENTE VERIFICANDO QUE NO EXISTA
 -- =====================================================
@@ -134,7 +171,13 @@ GO
 
 EXEC spu_agregar_cliente 'ALFKI', 'Patito de Hule';
 EXEC spu_agregar_cliente 'ALFKC', 'Patito de Hule';
+```
 
+---
+
+## 7. Insertar cliente con manejo de errores
+
+```sql
 -- =====================================================
 -- 7. INSERTAR UN CLIENTE CON MANEJO DE ERRORES (TRY-CATCH)
 -- =====================================================
@@ -157,7 +200,13 @@ END;
 GO
 
 EXEC spu_agregar_cliente_try_catch 'ALFKD', 'Muñeca Vieja';
+```
 
+---
+
+## 8. Comparar calificación (aprobado o reprobado)
+
+```sql
 -- =====================================================
 -- 8. VERIFICAR SI UN ALUMNO APROBÓ O REPROBÓ
 -- =====================================================
@@ -180,7 +229,13 @@ GO
 
 EXEC spu_comparar_calificacion @calif = 5;
 GO
+```
 
+---
+
+## 9. Procedimiento con ciclo WHILE
+
+```sql
 -- =====================================================
 -- 9. MANEJO DE CICLOS EN STORED PROCEDURES (IMPRIMIR N VECES)
 -- =====================================================
@@ -208,4 +263,5 @@ EXEC spu_imprimir 10;
 ```
 
 ---
+
 

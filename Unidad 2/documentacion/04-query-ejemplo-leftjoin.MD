@@ -1,8 +1,5 @@
 # Ejemplo LEFT JOIN - Northwind
 
-Este documento muestra una práctica completa de `LEFT JOIN` sin modificar la estructura original del script.  
-Cada bloque está separado con un encabezado `##` que identifica su propósito sin alterar el contenido.
-
 ---
 
 ## Configuración y eliminación previa
@@ -292,4 +289,4 @@ ON p1.ProductID = p2.ProductID
 
 ---
 
-**Fin del documento**
+
