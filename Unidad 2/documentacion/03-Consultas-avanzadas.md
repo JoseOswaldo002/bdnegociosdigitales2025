@@ -1,8 +1,7 @@
- ## sql
+``` sql
 
-## seleccionar todas las categorias y productos
+-- seleccionar todas las categorias y productos
 
-````SQL
 select * from
 Categories
 inner join
@@ -56,8 +55,7 @@ inner join [Order Details] as od
 on od.OrderID = o.OrderID
 where o.OrderDate Between '1996-07-01' and '1996-10-31'
 
- 
-````
+ ```
 
 ## Consultas basicas con inner join
 
