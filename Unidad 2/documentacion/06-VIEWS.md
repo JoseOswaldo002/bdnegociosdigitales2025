@@ -1,8 +1,9 @@
 # Vistas en SQL Server - Northwind
 
 
-
 ---
+
+## Sintaxis de vistas y preparación
 
 ```sql
 -- ==========================
@@ -15,7 +16,13 @@
 -- CREATE VIEW nombreVista AS SELECT columnas FROM tabla WHERE condición;
 
 USE Northwind;
+```
 
+---
+
+## Crear y modificar vista para categorías
+
+```sql
 -- ============================================
 -- CREACIÓN DE UNA VISTA PARA VER TODAS LAS CATEGORÍAS
 -- ============================================
@@ -64,7 +71,13 @@ SELECT * FROM VistaCategoriasTodas WHERE CategoryName = 'Beverages';
 
 -- ELIMINAR LA VISTA SI YA NO SE NECESITA
 DROP VIEW VistaCategoriasTodas;
+```
 
+---
+
+## Vista para clientes mexicanos y brasileños
+
+```sql
 -- ============================================
 -- CREAR UNA VISTA PARA CLIENTES DE MÉXICO Y BRASIL
 -- ============================================
@@ -93,7 +106,13 @@ SELECT *
 FROM Orders AS o
 INNER JOIN clientesLatinos AS cl
 ON o.CustomerID = cl.CustomerID;
+```
 
+---
+
+## Vista general de órdenes con múltiples JOIN
+
+```sql
 -- ============================================
 -- CREAR UNA VISTA PARA VISUALIZAR ÓRDENES, PRODUCTOS Y CLIENTES
 -- ============================================
@@ -136,7 +155,13 @@ SELECT SUM(Importe) AS 'Importe total'
 FROM vistaOrdenesDeCompra
 WHERE YEAR([Fecha de orden]) BETWEEN 1995 AND 1996;
 GO
+```
 
+---
+
+## Vista de órdenes entre 1995 y 1996
+
+```sql
 -- ============================================
 -- CREAR UNA VISTA PARA ÓRDENES FILTRADAS ENTRE 1995 Y 1996
 -- ============================================
@@ -154,19 +179,32 @@ GO
 
 -- CONSULTAR LOS DATOS DE LA NUEVA VISTA
 SELECT * FROM vista_ordenes_1995_1996;
+```
 
+---
+
+## Crear schema y tabla personalizada
+
+```sql
 -- ============================================
 -- CREACIÓN DE UN SCHEMA Y UNA TABLA EN ESE SCHEMA
 -- ============================================
 
 -- Un schema permite organizar las tablas dentro de una base de datos
 CREATE SCHEMA rh;
+
 -- CREACIÓN DE UNA TABLA DENTRO DEL SCHEMA "rh"
 CREATE TABLE rh.tablarh (
     id INT PRIMARY KEY,
     nombre NVARCHAR(50)
 );
+```
 
+---
+
+## Vista horizontal: Categorías y Productos
+
+```sql
 -- ============================================
 -- CREAR UNA VISTA HORIZONTAL PARA RELACIONAR CATEGORÍAS Y PRODUCTOS
 -- ============================================
@@ -187,5 +225,4 @@ SELECT * FROM rh.viewCategoriaProductos;
 ```
 
 ---
-
 
